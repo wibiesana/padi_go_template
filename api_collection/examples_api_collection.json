@@ -1,0 +1,312 @@
+{
+    "info": {
+        "name": "Examples & Demo API Collection",
+        "description": "API collection showcasing Padi REST API features: Role-Based Access Control (RBAC) and Real-time SSE Broadcasting (Mercure)",
+        "_postman_id": "examples-api-collection-uuid",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+        {
+            "name": "RBAC Examples",
+            "item": [
+                {
+                    "name": "Get Admin Stats (Admin Only)",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token}}"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{base_url}}/examples/rbac/stats",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "examples",
+                                "rbac",
+                                "stats"
+                            ]
+                        },
+                        "description": "Retrieve admin dashboard stats. Requires 'admin' role."
+                    }
+                },
+                {
+                    "name": "List Users (Admin or Teacher)",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token}}"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{base_url}}/examples/rbac/users",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "examples",
+                                "rbac",
+                                "users"
+                            ]
+                        },
+                        "description": "Retrieve users list. Admins see all users, Teachers see only student accounts."
+                    }
+                },
+                {
+                    "name": "Get My Profile (Self Access)",
+                    "request": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token}}"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{base_url}}/examples/rbac/my-profile",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "examples",
+                                "rbac",
+                                "my-profile"
+                            ]
+                        },
+                        "description": "Get logged-in user's profile detail."
+                    }
+                },
+                {
+                    "name": "Update My Profile (Self Access)",
+                    "request": {
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token}}"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"username\": \"my_new_username\",\n    \"email\": \"new_email@example.com\"\n}"
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/examples/rbac/my-profile",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "examples",
+                                "rbac",
+                                "my-profile"
+                            ]
+                        },
+                        "description": "Update logged-in user's profile details."
+                    }
+                },
+                {
+                    "name": "Create Student Account (Admin or Teacher)",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token}}"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"username\": \"student_bob\",\n    \"email\": \"bob@school.com\",\n    \"password\": \"BobPassword123\"\n}"
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/examples/rbac/students",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "examples",
+                                "rbac",
+                                "students"
+                            ]
+                        },
+                        "description": "Create a new student user account."
+                    }
+                }
+            ]
+        },
+        {
+            "name": "Real-time SSE Examples",
+            "item": [
+                {
+                    "name": "Broadcast Chat Message",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token}}"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"username\": \"Alice\",\n    \"message\": \"Hello everyone in the public chat!\"\n}"
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/examples/realtime/chat",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "examples",
+                                "realtime",
+                                "chat"
+                            ]
+                        },
+                        "description": "Send a message to the public 'public-chat' topic."
+                    }
+                },
+                {
+                    "name": "Send Private Notification",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token}}"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"user_id\": 1,\n    \"message\": \"Your order has been shipped successfully!\"\n}"
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/examples/realtime/notify",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "examples",
+                                "realtime",
+                                "notify"
+                            ]
+                        },
+                        "description": "Push a private event targeting user-notifications-{user_id} channel."
+                    }
+                },
+                {
+                    "name": "Send System Alert (Admin Only)",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token}}"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"message\": \"System database maintenance scheduled in 30 minutes!\"\n}"
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/examples/realtime/alert",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "examples",
+                                "realtime",
+                                "alert"
+                            ]
+                        },
+                        "description": "Send a secure system alert restricted to 'admin' and 'moderators' targets."
+                    }
+                },
+                {
+                    "name": "Request Custom Subscribe Token",
+                    "request": {
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token}}"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\n    \"topics\": [\n        \"public-chat\",\n        \"user-notifications-1\"\n    ]\n}"
+                        },
+                        "url": {
+                            "raw": "{{base_url}}/examples/realtime/token",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "examples",
+                                "realtime",
+                                "token"
+                            ]
+                        },
+                        "description": "Fetch a customized subscriber JWT token for authorized SSE channels."
+                    }
+                }
+            ]
+        }
+    ],
+    "variable": [
+        {
+            "key": "base_url",
+            "value": "http://localhost:8085",
+            "description": "Base URL for the API server"
+        }
+    ]
+}

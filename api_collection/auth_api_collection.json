@@ -1,0 +1,283 @@
+{
+    "info": {
+        "name": "Authentication API",
+        "description": "Authentication endpoints for login, register, and user profile",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+        "_exporter_id": "0"
+    },
+    "item": [
+        {
+            "name": "Register",
+            "event": [
+                {
+                    "listen": "test",
+                    "script": {
+                        "exec": [
+                            "// Auto-save token from response",
+                            "if (pm.response.code === 201) {",
+                            "    var jsonData = pm.response.json();",
+                            "    if (jsonData.data && jsonData.data.token) {",
+                            "        pm.collectionVariables.set('token', jsonData.data.token);",
+                            "        pm.environment.set('token', jsonData.data.token);",
+                            "        pm.globals.set('token', jsonData.data.token);",
+                            "        console.log('Token saved globally:', jsonData.data.token);",
+                            "    }",
+                            "}"
+                        ],
+                        "type": "text/javascript"
+                    }
+                }
+            ],
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n    \"username\": \"johndoe\",\n    \"email\": \"john@example.com\",\n    \"password\": \"Password123!\",\n    \"password_confirmation\": \"Password123!\"\n}"
+                },
+                "url": {
+                    "raw": "{{base_url}}/auth/register",
+                    "host": [
+                        "{{base_url}}"
+                    ],
+                    "path": [
+                        "auth",
+                        "register"
+                    ]
+                },
+                "description": "Register a new user account. Returns user data and JWT token."
+            },
+            "response": []
+        },
+        {
+            "name": "Login",
+            "event": [
+                {
+                    "listen": "test",
+                    "script": {
+                        "exec": [
+                            "// Auto-save token and remember_token from response",
+                            "if (pm.response.code === 200) {",
+                            "    var jsonData = pm.response.json();",
+                            "    if (jsonData.data && jsonData.data.token) {",
+                            "        pm.collectionVariables.set('token', jsonData.data.token);",
+                            "        pm.environment.set('token', jsonData.data.token);",
+                            "        pm.globals.set('token', jsonData.data.token);",
+                            "        console.log('Token saved globally:', jsonData.data.token);",
+                            "    }",
+                            "    if (jsonData.data && jsonData.data.remember_token) {",
+                            "        pm.collectionVariables.set('remember_token', jsonData.data.remember_token);",
+                            "        pm.environment.set('remember_token', jsonData.data.remember_token);",
+                            "        pm.globals.set('remember_token', jsonData.data.remember_token);",
+                            "        console.log('Remember token saved globally:', jsonData.data.remember_token);",
+                            "    }",
+                            "}"
+                        ],
+                        "type": "text/javascript"
+                    }
+                }
+            ],
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n    \"username\": \"john@example.com\",\n    \"password\": \"Password123!\",\n    \"remember_me\": true\n}"
+                },
+                "url": {
+                    "raw": "{{base_url}}/auth/login",
+                    "host": [
+                        "{{base_url}}"
+                    ],
+                    "path": [
+                        "auth",
+                        "login"
+                    ]
+                },
+                "description": "Login with email or username and password. Set remember_me to 'true' for 365-day session (1 year) - ideal for mobile apps. Returns JWT token and remember_token (if remember_me enabled)."
+            },
+            "response": []
+        },
+        {
+            "name": "Get Current User (Me)",
+            "request": {
+                "method": "GET",
+                "header": [
+                    {
+                        "key": "Authorization",
+                        "value": "Bearer {{token}}",
+                        "type": "text"
+                    }
+                ],
+                "url": {
+                    "raw": "{{base_url}}/auth/me",
+                    "host": [
+                        "{{base_url}}"
+                    ],
+                    "path": [
+                        "auth",
+                        "me"
+                    ]
+                },
+                "description": "Get current authenticated user information. Requires valid JWT token."
+            },
+            "response": []
+        },
+        {
+            "name": "Refresh Token",
+            "event": [
+                {
+                    "listen": "test",
+                    "script": {
+                        "exec": [
+                            "// Auto-save refreshed token",
+                            "if (pm.response.code === 200) {",
+                            "    var jsonData = pm.response.json();",
+                            "    if (jsonData.data && jsonData.data.token) {",
+                            "        pm.collectionVariables.set('token', jsonData.data.token);",
+                            "        pm.environment.set('token', jsonData.data.token);",
+                            "        pm.globals.set('token', jsonData.data.token);",
+                            "        console.log('Token refreshed and saved globally:', jsonData.data.token);",
+                            "    }",
+                            "}"
+                        ],
+                        "type": "text/javascript"
+                    }
+                }
+            ],
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n    \"remember_token\": \"{{remember_token}}\"\n}"
+                },
+                "url": {
+                    "raw": "{{base_url}}/auth/refresh",
+                    "host": [
+                        "{{base_url}}"
+                    ],
+                    "path": [
+                        "auth",
+                        "refresh"
+                    ]
+                },
+                "description": "Refresh access token using remember_token. Use this to get a new token when the current one expires. Remember token is valid for 365 days (1 year) - perfect for mobile apps."
+            },
+            "response": []
+        },
+        {
+            "name": "Logout",
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Authorization",
+                        "value": "Bearer {{token}}",
+                        "type": "text"
+                    }
+                ],
+                "url": {
+                    "raw": "{{base_url}}/auth/logout",
+                    "host": [
+                        "{{base_url}}"
+                    ],
+                    "path": [
+                        "auth",
+                        "logout"
+                    ]
+                },
+                "description": "Logout current user and invalidate token."
+            },
+            "response": []
+        },
+        {
+            "name": "Forgot Password",
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n    \"login\": \"john@example.com\"\n}"
+                },
+                "url": {
+                    "raw": "{{base_url}}/auth/forgot-password",
+                    "host": [
+                        "{{base_url}}"
+                    ],
+                    "path": [
+                        "auth",
+                        "forgot-password"
+                    ]
+                },
+                "description": "Request password reset. Sends reset link to user's email if account exists. Can use email or username."
+            },
+            "response": []
+        },
+        {
+            "name": "Reset Password",
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n    \"email\": \"john@example.com\",\n    \"token\": \"your-reset-token-from-email\",\n    \"password\": \"NewPassword123!\",\n    \"password_confirmation\": \"NewPassword123!\"\n}"
+                },
+                "url": {
+                    "raw": "{{base_url}}/auth/reset-password",
+                    "host": [
+                        "{{base_url}}"
+                    ],
+                    "path": [
+                        "auth",
+                        "reset-password"
+                    ]
+                },
+                "description": "Reset password using token from email. Token expires in 1 hour."
+            },
+            "response": []
+        }
+    ],
+    "variable": [
+        {
+            "key": "base_url",
+            "value": "http://localhost:8085",
+            "type": "string"
+        },
+        {
+            "key": "token",
+            "value": "",
+            "type": "string"
+        },
+        {
+            "key": "remember_token",
+            "value": "",
+            "type": "string"
+        }
+    ]
+}

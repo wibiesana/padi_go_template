@@ -1,0 +1,282 @@
+{
+    "info": {
+        "name": "Site API Collection",
+        "description": "API collection for Site Controller endpoints in Padi REST API",
+        "_postman_id": "site-api-collection-uuid",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+        {
+            "name": "API Home",
+            "request": {
+                "method": "GET",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "url": {
+                    "raw": "{{base_url}}/",
+                    "host": [
+                        "{{base_url}}"
+                    ],
+                    "path": [
+                        "api",
+                        ""
+                    ]
+                },
+                "description": "Get API home page with basic application information"
+            },
+            "response": [
+                {
+                    "name": "Success Response",
+                    "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{base_url}}/",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                ""
+                            ]
+                        }
+                    },
+                    "status": "OK",
+                    "code": 200,
+                    "_postman_previewlanguage": "json",
+                    "header": [
+                        {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                        }
+                    ],
+                    "body": "{\n    \"success\": true,\n    \"aplikasi\": \"Padi REST API\",\n    \"status\": \"Up and running\",\n    \"timestamp\": \"2026-01-25 10:30:45\"\n}"
+                }
+            ]
+        },
+        {
+            "name": "Health Check",
+            "request": {
+                "method": "GET",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "url": {
+                    "raw": "{{base_url}}/health",
+                    "host": [
+                        "{{base_url}}"
+                    ],
+                    "path": [
+                        "api",
+                        "health"
+                    ]
+                },
+                "description": "Check API health status and environment information"
+            },
+            "response": [
+                {
+                    "name": "Success Response",
+                    "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{base_url}}/health",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "health"
+                            ]
+                        }
+                    },
+                    "status": "OK",
+                    "code": 200,
+                    "_postman_previewlanguage": "json",
+                    "header": [
+                        {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                        }
+                    ],
+                    "body": "{\n    \"success\": true,\n    \"environment\": \"production\",\n    \"debug\": false,\n    \"message\": \"Padi REST API is running\",\n    \"version\": \"2.0.0\",\n    \"timestamp\": \"2026-01-25 10:30:45\"\n}"
+                }
+            ]
+        },
+        {
+            "name": "Site Information",
+            "request": {
+                "method": "GET",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "url": {
+                    "raw": "{{base_url}}/site/info",
+                    "host": [
+                        "{{base_url}}"
+                    ],
+                    "path": [
+                        "api",
+                        "site",
+                        "info"
+                    ]
+                },
+                "description": "Get detailed site information including version, author, and description"
+            },
+            "response": [
+                {
+                    "name": "Success Response",
+                    "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{base_url}}/site/info",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "site",
+                                "info"
+                            ]
+                        }
+                    },
+                    "status": "OK",
+                    "code": 200,
+                    "_postman_previewlanguage": "json",
+                    "header": [
+                        {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                        }
+                    ],
+                    "body": "{\n    \"success\": true,\n    \"site_name\": \"Padi REST API\",\n    \"description\": \"A RESTful API built with Go\",\n    \"version\": \"2.0.0\",\n    \"author\": \"Padi Team\",\n    \"environment\": \"production\",\n    \"timestamp\": \"2026-01-25 10:30:45\"\n}"
+                }
+            ]
+        },
+        {
+            "name": "API Endpoints Documentation",
+            "request": {
+                "method": "GET",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "url": {
+                    "raw": "{{base_url}}/site/endpoints",
+                    "host": [
+                        "{{base_url}}"
+                    ],
+                    "path": [
+                        "api",
+                        "site",
+                        "endpoints"
+                    ]
+                },
+                "description": "Get list of all available API endpoints with descriptions"
+            },
+            "response": [
+                {
+                    "name": "Success Response",
+                    "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{base_url}}/site/endpoints",
+                            "host": [
+                                "{{base_url}}"
+                            ],
+                            "path": [
+                                "api",
+                                "site",
+                                "endpoints"
+                            ]
+                        }
+                    },
+                    "status": "OK",
+                    "code": 200,
+                    "_postman_previewlanguage": "json",
+                    "header": [
+                        {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                        }
+                    ],
+                    "body": "{\n    \"success\": true,\n    \"endpoints\": {\n        \"authentication\": {\n            \"POST /auth/register\": \"Register new user\",\n            \"POST /auth/login\": \"User login\",\n            \"POST /auth/logout\": \"User logout\",\n            \"POST /auth/refresh\": \"Refresh token\",\n            \"POST /auth/forgot-password\": \"Request password reset\",\n            \"POST /auth/reset-password\": \"Reset password\",\n            \"GET /auth/me\": \"Get current user info\"\n        },\n        \"users\": {\n            \"GET /users\": \"Get users (paginated)\",\n            \"GET /users/all\": \"Get all users\",\n            \"GET /users/{id}\": \"Get user by ID\",\n            \"POST /users\": \"Create user\",\n            \"PUT /users/{id}\": \"Update user\",\n            \"DELETE /users/{id}\": \"Delete user\"\n        },\n        \"site\": {\n            \"GET /\": \"API information\",\n            \"GET /health\": \"Health check\",\n            \"GET /site/info\": \"Site information\",\n            \"GET /site/endpoints\": \"Available endpoints\"\n        }\n    },\n    \"timestamp\": \"2026-01-25 10:30:45\"\n}"
+                }
+            ]
+        }
+    ],
+    "event": [
+        {
+            "listen": "prerequest",
+            "script": {
+                "type": "text/javascript",
+                "exec": [
+                    ""
+                ]
+            }
+        },
+        {
+            "listen": "test",
+            "script": {
+                "type": "text/javascript",
+                "exec": [
+                    "// Basic test for successful response",
+                    "pm.test(\"Status code is 200\", function () {",
+                    "    pm.response.to.have.status(200);",
+                    "});",
+                    "",
+                    "pm.test(\"Response has success field\", function () {",
+                    "    var jsonData = pm.response.json();",
+                    "    pm.expect(jsonData.success).to.be.true;",
+                    "});",
+                    "",
+                    "pm.test(\"Response has timestamp\", function () {",
+                    "    var jsonData = pm.response.json();",
+                    "    pm.expect(jsonData).to.have.property('timestamp');",
+                    "});"
+                ]
+            }
+        }
+    ],
+    "variable": [
+        {
+            "key": "base_url",
+            "value": "http://localhost:8085",
+            "description": "Base URL for the API server"
+        }
+    ]
+}
