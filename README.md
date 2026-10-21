@@ -37,27 +37,34 @@ Welcome to the **Padi REST API Go Framework** — a high-performance Go port of 
 ## 🚀 Installation & Quick Start
 
 ### 1. Clone Starter Template
+
 ```bash
 git clone https://github.com/wibiesana/padi_go.git my-api-project
 cd my-api-project
 ```
 
 ### 2. Install Dependencies
+
 ```bash
 go mod tidy
 ```
 
 ### 3. Setup Environment
+
 Copy `.env.example` to `.env`:
+
 ```bash
 cp .env.example .env
 ```
-*Or run the interactive setup wizard:*
+
+_Or run the interactive setup wizard:_
+
 ```bash
 go run ./cmd/padi init
 ```
 
 ### 4. Run Migrations & Start Server
+
 ```bash
 # Run database migrations
 go run ./cmd/padi migrate
@@ -67,6 +74,7 @@ go run main.go
 # or using the CLI:
 go run ./cmd/padi serve
 ```
+
 The API server will be available at **`http://localhost:8080`**.
 
 ---
@@ -109,19 +117,19 @@ padi_go_template/
 
 ## 🛠️ Padi CLI Commands
 
-| Command | Alias | Description |
-| :--- | :--- | :--- |
-| `go run ./cmd/padi init` | | Run the Interactive Setup Wizard (configures .env & database) |
-| `go run ./cmd/padi serve` | | Start the HTTP API server |
-| `go run ./cmd/padi migrate` | | Run pending database migrations |
-| `go run ./cmd/padi migrate:rollback` | | Rollback last batch of migrations |
-| `go run ./cmd/padi generate:crud <table_name>` | `padi g <table_name>` | Auto-generate Base Model, Custom Model, Resource, Controller, and Route snippet |
-| `go run ./cmd/padi generate:crud-all` | `padi ga` | Auto-generate CRUD for **ALL** database tables |
-| `go run ./cmd/padi queue:work [queue_name]` | `padi queue` | Run the background queue worker |
-| `go run ./cmd/padi make:model <name>` | `padi create:model` | Create a new model file |
-| `go run ./cmd/padi make:controller <name>` | `padi create:controller` | Create a new controller file |
-| `go run ./cmd/padi make:migration <name>` | `padi create:migration` | Create a new migration file |
-| `go run ./cmd/padi update` | | Update Padi Core dependencies and modules to latest versions |
+| Command                                        | Alias                    | Description                                                                     |
+| :--------------------------------------------- | :----------------------- | :------------------------------------------------------------------------------ |
+| `go run ./cmd/padi init`                       |                          | Run the Interactive Setup Wizard (configures .env & database)                   |
+| `go run ./cmd/padi serve`                      |                          | Start the HTTP API server                                                       |
+| `go run ./cmd/padi migrate`                    |                          | Run pending database migrations                                                 |
+| `go run ./cmd/padi migrate:rollback`           |                          | Rollback last batch of migrations                                               |
+| `go run ./cmd/padi generate:crud <table_name>` | `padi g <table_name>`    | Auto-generate Base Model, Custom Model, Resource, Controller, and Route snippet |
+| `go run ./cmd/padi generate:crud-all`          | `padi ga`                | Auto-generate CRUD for **ALL** database tables                                  |
+| `go run ./cmd/padi queue:work [queue_name]`    | `padi queue`             | Run the background queue worker                                                 |
+| `go run ./cmd/padi make:model <name>`          | `padi create:model`      | Create a new model file                                                         |
+| `go run ./cmd/padi make:controller <name>`     | `padi create:controller` | Create a new controller file                                                    |
+| `go run ./cmd/padi make:migration <name>`      | `padi create:migration`  | Create a new migration file                                                     |
+| `go run ./cmd/padi update`                     |                          | Update Padi Core dependencies and modules to latest versions                    |
 
 ---
 
@@ -132,7 +140,7 @@ padi_go_template/
   "status": 200,
   "success": true,
   "message": "Operation successful",
-  "data": { ... },
+  "item": { ... },
   "meta": {
     "total": 100,
     "per_page": 15,
