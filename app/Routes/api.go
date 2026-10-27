@@ -22,7 +22,7 @@ func RegisterRoutes(r *router.Router) {
 
 		response.Success(w, map[string]interface{}{
 			"app_name":  appName,
-			"version":   "1.0.0",
+			"version":   "1.0.1",
 			"status":    "running",
 		}, fmt.Sprintf("Welcome to %s 🌾", appName))
 	})
